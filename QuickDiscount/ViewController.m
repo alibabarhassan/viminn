@@ -7,14 +7,21 @@
 //
 
 #import "ViewController.h"
+#import "SharedManager.h"
 
-@interface ViewController ()
+@interface ViewController (){
+
+    
+
+}
 
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
+    
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -25,5 +32,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+}
+
+- (IBAction)unwindToThisViewController:(UIStoryboardSegue *)unwindSegue
+{
+    
+    [SharedManager getInstance].isLoggedIn=NO;
+    [[SharedManager getInstance] saveModel];
+    
+}
 
 @end

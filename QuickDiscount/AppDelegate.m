@@ -7,6 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "SVHTTPClient.h"
+#import "SVHTTPRequest.h"
+#import "PayPalMobile.h"
+@import GooglePlaces;
+@import Stripe;
+
 
 @interface AppDelegate ()
 
@@ -17,6 +23,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //[[SVHTTPClient sharedClient] setBasePath:@"http://213.136.76.43/quickdiscount/wp-admin/admin-ajax.php"];
+    
+    //[[SVHTTPClient sharedClient] setBasePath:@"http://quickdiscount.it/wp-admin/admin-ajax.php"];
+    
+    [[SVHTTPClient sharedClient] setBasePath:@"http://213.136.76.43/vimmin/wp-admin/admin-ajax.php"];
+    
+    //http://213.136.76.43/vimmin/wp-admin/admin-ajax.php
+    
+    
+    [GMSPlacesClient provideAPIKey:@"AIzaSyAnOiOVMBnLmXslxHfoKaAHpzoZVL9GGgU"];
+     [[STPPaymentConfiguration sharedConfiguration] setPublishableKey:@"pk_test_5JOX8750JfeJ0cMNpoFXICVd"];
+    
+    [PayPalMobile initializeWithClientIdsForEnvironments:@{PayPalEnvironmentProduction:@"",PayPalEnvironmentSandbox:@"access_token$sandbox$yrc2cdrcmp4pk36q$41e2913316b6f5454a3bf3c5c393a4ea"}];
+    
+    
     return YES;
 }
 
